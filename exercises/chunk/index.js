@@ -8,25 +8,49 @@
 // chunk([1, 2, 3, 4, 5], 4) --> [[ 1, 2, 3, 4], [5]]
 // chunk([1, 2, 3, 4, 5], 10) --> [[ 1, 2, 3, 4, 5]]
 
+
 function chunk(array, size) {
-  let start = 0;
+  const chunked = [];
   let i = 0;
-  let arrayChunk = [];
-  let chunkedArray = [];
 
-  while (i < array.length) {
-    console.log("start" + start)
-    arrayChunk.push(array[i]);
-
-    if (i === start + size || i < size && i === size-1 || i === array.length-1) {
-      console.log("i" + i)
-      chunkedArray.push(arrayChunk);
-      arrayChunk = [];
-      start = i;
-    }
-    i++;
+  while (i<array.length) {
+    chunked.push(array.slice(i, i+size))
+    i += size;
   }
-  return chunkedArray;
+  return chunked;
 }
 
+// function chunk(array, size) {
+//   const chunked = [];
+//
+//   for (let element of array) {
+//     const last = chunked[chunked.length-1];
+//
+//     if (!last || last.length === size) {
+//       chunked.push([element]);
+//     } else {
+//       last.push(element)
+//     }
+//   }
+//   return chunked;
+// }
+
+// function chunk(array, size) {
+//   let start = 0;
+//   let i = 0;
+//   let arrayChunk = [];
+//   const chunked = [];
+//
+//   while (i < array.length) {
+//     arrayChunk.push(array[i]);
+//
+//     if (i === start + size || i < size && i === size-1 || i === array.length-1) {
+//       chunked.push(arrayChunk);
+//       arrayChunk = [];
+//       start = i;
+//     }
+//     i++;
+//   }
+//   return chunked;
+// }
 module.exports = chunk;
