@@ -5,6 +5,22 @@
 // maxChar("abcccccccd") === "c"
 // maxChar("apple 1231111") === "1"
 
-function maxChar(str) {}
+function maxChar(str) {
+  let charMap = {};
+  let max = 0;
+  let mostCommonChar = "";
+
+  for (let char of str) {
+    charMap[char] ? charMap[char]++ : charMap[char] = 1;
+  }
+
+  for (let char in charMap) {
+    if (charMap[char] > max) {
+      max = charMap[char];
+      mostCommonChar = char
+    }
+  }
+  return mostCommonChar;
+}
 
 module.exports = maxChar;
